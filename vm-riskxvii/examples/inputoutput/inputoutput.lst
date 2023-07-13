@@ -1,0 +1,49 @@
+
+inputoutput/inputoutput:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	7ff00113          	li	sp,2047
+   4:	02c000ef          	jal	ra,30 <main>
+   8:	000017b7          	lui	a5,0x1
+   c:	80078623          	sb	zero,-2036(a5) # 80c <ADDR_END+0xc>
+
+00000010 <prints>:
+  10:	00054783          	lbu	a5,0(a0)
+  14:	00078c63          	beqz	a5,2c <prints+0x1c>
+  18:	00001737          	lui	a4,0x1
+  1c:	00150513          	addi	a0,a0,1
+  20:	80f70023          	sb	a5,-2048(a4) # 800 <ADDR_END>
+  24:	00054783          	lbu	a5,0(a0)
+  28:	fe079ae3          	bnez	a5,1c <prints+0xc>
+  2c:	00008067          	ret
+
+00000030 <main>:
+  30:	f8010113          	addi	sp,sp,-128
+  34:	06112e23          	sw	ra,124(sp)
+  38:	09800513          	li	a0,152
+  3c:	fd5ff0ef          	jal	ra,10 <prints>
+  40:	00c10713          	addi	a4,sp,12
+  44:	07010513          	addi	a0,sp,112
+  48:	00001637          	lui	a2,0x1
+  4c:	81260613          	addi	a2,a2,-2030 # 812 <ADDR_END+0x12>
+  50:	00a00593          	li	a1,10
+  54:	00062683          	lw	a3,0(a2)
+  58:	00074783          	lbu	a5,0(a4)
+  5c:	00d787b3          	add	a5,a5,a3
+  60:	0ff7f793          	zext.b	a5,a5
+  64:	00f70023          	sb	a5,0(a4)
+  68:	00078863          	beqz	a5,78 <main+0x48>
+  6c:	00b78663          	beq	a5,a1,78 <main+0x48>
+  70:	00170713          	addi	a4,a4,1
+  74:	fea710e3          	bne	a4,a0,54 <main+0x24>
+  78:	0b800513          	li	a0,184
+  7c:	f95ff0ef          	jal	ra,10 <prints>
+  80:	00c10513          	addi	a0,sp,12
+  84:	f8dff0ef          	jal	ra,10 <prints>
+  88:	00000513          	li	a0,0
+  8c:	07c12083          	lw	ra,124(sp)
+  90:	08010113          	addi	sp,sp,128
+  94:	00008067          	ret

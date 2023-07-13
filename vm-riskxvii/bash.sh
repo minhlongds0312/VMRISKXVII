@@ -1,0 +1,1 @@
+./vm_riskxvii examples/inputoutput/inputoutput.mi < examples/inputoutput/test.txt
